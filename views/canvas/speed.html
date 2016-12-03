@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="500" height="500" style="background-color: #000"></canvas>
+
+    <script type="text/javascript" src="utils.js"></script>
+    <script type="text/javascript" src="ball.js"></script>
+    <script type="text/javascript">
+        window.onload = function(){
+        	var canvas = document.querySelector("canvas"),
+        		context = canvas.getContext("2d");
+
+        	var balls = [],
+        		numBall = 10,
+        		canvasWid = canvas.width,
+        		canvasHei = canvas.height;
+
+        	//定义10个小球
+        	for(var i = 0; i < numBall; i++){
+        		var size = Math.random()*20 +5,
+        			color = '#'+(Math.random()*0xffffff<<0).toString(16),//产生随机颜色    
+        			/*
+					我们知道hex颜色值是从#000000到#ffffff，后面那六位数是16进制数，相当于“0x000000”到“0xffffff”。 '#'+Math.floor(Math.random()*16777215).toString(16)这实现的思路是将hex的最大值ffffff先转换为10进制，进行random后再转换回16进制.
+					利用左移运算符把0xffffff转化为整型。这样就不用记16777215了。由于左移运算符的优先级比不上乘号，因此随机后再左移，连Math.floor也不用了。
+        			*/
+        			ball = new Ball(size, color);
+
+        		ball.id = "ball_"+i;//给每个小球一个id
+        		ball.radius = Math.random()*30+10;
+        		ball.x = Math.random()*canvasWid;
+        		ball.y = Math.random()*canvasHei;
+        		ball.vx = Math.random()*2-1;
+        		ball.vy = Math.random()*2-1;
+
+        		balls.push(ball);
+        	}
+        	//定义draw函数
+        	function draw(ball,pos){
+        		//让小球加上她的速度值
+        		ball.x += ball.vx;
+        		ball.y += ball.vy;
+
+        		//判断是否超出边界,不论超出哪一边
+        		if(ball.x-ball.radius > canvasWid || ball.radius+ball.x<0 || ball.y-ball.radius > canvasHei || ball.y+ball.radius <0){
+        				//超出了重置速度与坐标
+                      	ball.x = canvas.width/2;
+                      	ball.y = canvas.height;
+                      	ball.vx = Math.random()*(2) - 1;
+                      	ball.vy = Math.random()*(-2) - 1;
+        		}
+        		ball.draw(context);
+
+        	}
+
+        	//动画循环
+        	(function drawFrame(){
+        		window.requestAnimationFrame(drawFrame);
+        		context.clearRect(0,0,canvasWid,canvasHei);
+
+        		//定义初始变量i为小球的数量，并且会随着小球的移除而减小
+        		balls.forEach(draw);
+        	}())
+
+        }
+    </script>
+</body>
+</html>

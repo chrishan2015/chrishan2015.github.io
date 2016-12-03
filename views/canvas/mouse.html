@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="500" height="500" style="background-color: #000;">浏览器不支持此元素</canvas>
+
+    <script src="utils.js"></script>
+    <script type="text/javascript">
+        /*window.onload = function(){
+            var canvas = document.querySelector("canvas"),
+                //将canvas传入，该方法会返回一个包含属性x和y的对象
+                mouse = utils.captureMouse(canvas);
+
+                //为canvas绑定mousedown事件，当鼠标按下的时候打印出当前鼠标相对于canvas的坐标值
+                canvas.addEventListener("mousedown", function(event){
+                    console.log("x:"+mouse.x+"   y:"+mouse.y);
+                },false);
+        }*/
+        window.onload = function(){
+            //定义键盘事件
+            function onKeyboard(event){
+                switch(event.keyCode){
+                    case 38:
+                        console.log("up!");
+                        break;
+                    case 40:
+                        console.log("down!");
+                        break;
+                    case 37:
+                        console.log("left!");
+                        break;
+                    case 39:
+                        console.log("right!");
+                        break;
+                    default:
+                        console.log(event.keyCode);
+                }
+            }
+            //为window对象绑定键盘事件
+            window.addEventListener("keydown",onKeyboard,false);
+        }
+    </script>
+</body>
+</html>

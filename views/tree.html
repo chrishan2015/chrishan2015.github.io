@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        body{
+          background-color:#1d1d1d;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="1000" height="1000" style="background-color:#1d1d1d">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script type="text/javascript">
+    var c = document.getElementById('myCanvas'); var ctx = c.getContext('2d');
+ 
+    var id;
+     
+    var Sinus = {
+       x: 0,
+       freq: 0.03,
+       amp: 10,
+       y_trans: 250,
+       x_trans: 5,
+       x_rot: 0,
+       y_rot: 0,
+       rot: 0,
+       finished: false,
+       x_end: 900,
+        
+       draw: function(){
+     
+          var y = Math.sin(this.x*this.freq)*this.amp*Math.exp(this.x*-0.0005);
+     
+          var rp = rotate(this.x,y,this.rot);
+          this.x_rot = rp.x;
+          this.y_rot = rp.y;
+     
+          ctx.beginPath();
+          ctx.moveTo(rp.x + this.x_trans, rp.y + this.y_trans);
+          ctx.lineTo(rp.x + 1 + this.x_trans, rp.y + this.y_trans);
+          ctx.stroke();
+          this.x = this.x + 1;
+     
+          if((rp.x+this.x_trans)<5 || (rp.x+this.x_trans)>=950 || (rp.y+this.y_trans) >= 500 || (rp.y+this.y_trans) <50 || this.x > this.x_end){
+     
+            drawLeaf(this.x,y,this.x_trans,this.y_trans,this.rot);
+            this.finished = true;
+          }
+     
+         if(this.x % 70 == 0){
+            this.breed();
+         }
+       },
+     
+       breed: function(){
+     
+          var child1 = Object.create(Sinus);
+          child1.rot = this.rot + 0.4;
+          child1.x_trans = this.x_rot + this.x_trans;
+          child1.y_trans = this.y_rot + this.y_trans;
+          child1.x_end = this.x_end * 0.5 * (Math.exp(-1.7*this.x / this.x_end));
+     
+          ranken.push(child1);
+     
+          var child2 = Object.create(Sinus);
+          child2.rot = this.rot-0.4;
+          child2.x_trans = this.x_rot + this.x_trans;
+          child2.y_trans = this.y_rot + this.y_trans;
+          child2.x_end = this.x_end * 0.5 * (Math.exp(-1.7*this.x / this.x_end));
+     
+          ranken.push(child2);
+       }
+    }
+     
+    var ranken = [];
+    var hauptranke;
+     
+    function update(){
+
+       var reset = true;
+
+       for(var i=0; i<ranken.length; i++){
+          if(!ranken[i].finished){
+             ranken[i].draw();
+             reset = false;
+          }
+       }
+
+       if(reset){
+         clearInterval(id);
+         setTimeout(restart, 2000);
+       }
+    }
+
+    function restart(){
+      ctx.strokeStyle='#ffff99'; ctx.clearRect(0,0,1000,1000); ctx.lineWidth=2;
+
+      ranken = [];
+      hauptranke = Object.create(Sinus);
+      ranken.push(hauptranke);
+
+      id = setInterval(update, 5);
+    }
+
+    restart();
+     
+    /*******************Hilfsklassen und -methoden****************/
+    var Point = {
+     x: 0,
+     y: 0
+    }
+     
+    function rotate(x, y, w){
+       var x_rot = x*Math.cos(w)-y*Math.sin(w);
+       var y_rot = x*Math.sin(w)+y*Math.cos(w);
+     
+       var p = Object.create(Point);
+       p.x = x_rot;
+       p.y = y_rot;
+       return p;
+    }
+     
+    function drawLeaf(x, y, x_trans, y_trans, rot){
+     
+         var stuetzp1 = rotate(x + 20, y-10, rot);
+         var endp1 = rotate(x + 40, y, rot);
+         var stuetzp2 = rotate(x + 20, y + 10, rot);
+         var endp2 = rotate(x + 1,y, rot);
+     
+         ctx.quadraticCurveTo(stuetzp1.x + x_trans, stuetzp1.y + y_trans, endp1.x + x_trans, endp1.y + y_trans);
+         ctx.quadraticCurveTo(stuetzp2.x + x_trans, stuetzp2.y + y_trans, endp2.x + x_trans, endp2.y + y_trans);
+         ctx.stroke();
+    }
+</script>
+</body>
+</html>

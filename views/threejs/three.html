@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="three.min.js"></script>
+    <script type="text/javascript" src="stats.min.js"></script><!--实时的FPS信息，从而更好地监测动画效果-->
+</head>
+<body >
+
+    <script type="text/javascript">
+        var x=0,y=0,z=0;
+        var stat = null;
+        //FPS
+        stat = new Stats();
+        stat.domElement.style.position = 'absolute';
+        stat.domElement.style.right = '0px';
+        stat.domElement.style.top = '0px';
+        document.body.appendChild(stat.domElement);
+
+        var scene = new THREE.Scene();
+
+        var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+        camera.position.set(0,0,0);
+        scene.add(camera);
+
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize( window.innerWidth, window.innerHeight);
+        document.body.appendChild( renderer.domElement);
+        renderer.setClearColor(0x000000);
+
+        var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+        var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+        var cube = new THREE.Mesh( geometry, material );
+        scene.add( cube );
+
+        camera.position.z = 5
+        var geometry = new THREE.Geometry();
+        var material = new THREE.LineBasicMaterial( { vertexColors: true} );
+        var color1 = new THREE.Color( 0x444444 ), color2 = new THREE.Color( 0xFF0000 );
+
+        // 线的材质可以由2点的颜色决定
+        var p1 = new THREE.Vector3( 0, 100, 0 );
+        var p2 = new THREE.Vector3(  0, 0, 0 );
+        geometry.vertices.push(p1);
+        geometry.vertices.push(p2);
+        geometry.colors.push( color1, color2 );
+
+        var line = new THREE.Line( geometry, material, THREE.LinePieces );
+        scene.add(line);
+
+        function render() {
+            requestAnimationFrame( render );
+            cube.rotation.x += 0.1;
+            renderer.render( scene, camera );
+        }
+        render();
+
+    </script>
+</body>
+</html>

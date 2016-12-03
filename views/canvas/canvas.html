@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        body{
+            background: #dddddd;
+        }
+        #canvas{
+            margin: 20px;
+            padding: 20px;
+            background: #ffffff;
+            border: thin inset #aaaaaa;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="600" height="300"></canvas>
+
+    <script type="text/javascript">
+        var canvas = document.getElementById("canvas"),
+            context = canvas.getContext("2d");
+        context.font = "38px Arial";
+        context.fillStyle = "cornflowerblye";
+        context.strokeStyle = "blue";
+        context.fillText("hello canvas",canvas.width/2-150,canvas.height/2+15);
+    </script>
+</body>
+</html>
