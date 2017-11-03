@@ -150,13 +150,13 @@ canvas{
     }
 }
 #social {
-    background: #e18d87 url(../img/city.svg) left bottom repeat-x;
+    background: #e18d87 url(./img/city.svg) left bottom repeat-x;
     margin-top: -20px;
     min-height: 560px;
     overflow: hidden;
 }
 #social .clouds {
-    background: url(../img/clouds-city.svg);
+    background: url(./img/clouds-city.svg);
     background-repeat: repeat-x;
     height: 200px;
     position: absolute;
@@ -169,37 +169,37 @@ canvas{
     animation: clouds 300s linear infinite;
 }
 #social .left-first-house {
-    background: url(../img/left-first-house.svg) left top no-repeat;
+    background: url(./img/left-first-house.svg) left top no-repeat;
     right: 90%;
     width: 192px;
     z-index: 3;
 }
 #social .left-second-house {
-    background: url(../img/left-second-house.svg) left top no-repeat;
+    background: url(./img/left-second-house.svg) left top no-repeat;
     right: 80%;
     width: 274px;
     z-index: 2;
 }
 #social .left-third-house {
-    background: url(../img/left-third-house.svg) left top no-repeat;
+    background: url(./img/left-third-house.svg) left top no-repeat;
     right: 70%;
     width: 384px;
     z-index: 1;
 }
 #social .right-first-house {
-    background: url(../img/right-first-house.svg) right top no-repeat;
+    background: url(./img/right-first-house.svg) right top no-repeat;
     left: 86%;
     width: 270px;
     z-index: 6;
 }
 #social .right-second-house {
-    background: url(../img/right-second-house.svg) right top no-repeat;
+    background: url(./img/right-second-house.svg) right top no-repeat;
     left: 78%;
     width: 164px;
     z-index: 5;
 }
 #social .right-third-house {
-    background: url(../img/right-third-house.svg) right top no-repeat;
+    background: url(./img/right-third-house.svg) right top no-repeat;
     left: 70%;
     width: 384px;
     z-index: 4;
@@ -249,12 +249,12 @@ canvas{
 .img-box a img{
     width: 20rem;
 }
-.onhover{
+.img-box a .onhover{
     position: absolute;
     opacity: 0;
     top: 0;
+    transition: opacity 1s;
 }
 .img-box a:hover .onhover{
     opacity: 1;
-    transform: opacity 1s;
 }
