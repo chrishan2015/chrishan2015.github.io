@@ -8,6 +8,11 @@
     -o-box-sizing: border-box;
     box-sizing: border-box;
 }
+::selection {
+    background: #8b4513;
+    color: #b3d4fc;
+    text-shadow: none;
+}
 html{
     font-size: 62.5%;
 }
@@ -27,31 +32,26 @@ html{
     }
 }
 html,body{
-/*   color:border:solid 1px;  */
     font-family:Arial,Verdana,Sans-serif;
-    background-color: #66cdaa;
+    background-color: #d3807c;
     min-width: 200px;
 }
 nav{
-    text-align: center;
-    padding: 1rem;
-}
-.wrap{
-    height: 100%;
-    background-image: url("./index.jpg");
-    background-size: cover;
-    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 1rem;
 }
 .bg-color{
     height: 100%;
-    background-color:#66cdaa;
+    background-color:#d3807c;
     background-size: cover;
     font-size: 2rem;
     padding-top: 8rem;
 }
 .roll a{
-    position: relative;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
     font-size: 1.5rem;
     color: #fff;
     letter-spacing: 0.1rem;
@@ -139,5 +139,122 @@ nav{
 }
 canvas{
     margin: 8rem auto;
-    display: block;
+    display: none;
+}
+@keyframes clouds{
+    0% {
+        transform: translate(0, 0px);
+    }
+    100% {
+        transform: translate(1440px, 0);
+    }
+}
+#social {
+    background: #e18d87 url(../img/city.svg) left bottom repeat-x;
+    margin-top: -20px;
+    min-height: 560px;
+    overflow: hidden;
+}
+#social .clouds {
+    background: url(../img/clouds-city.svg);
+    background-repeat: repeat-x;
+    height: 200px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 0;
+    animation: clouds 300s linear infinite;
+}
+#social .left-first-house {
+    background: url(../img/left-first-house.svg) left top no-repeat;
+    right: 90%;
+    width: 192px;
+    z-index: 3;
+}
+#social .left-second-house {
+    background: url(../img/left-second-house.svg) left top no-repeat;
+    right: 80%;
+    width: 274px;
+    z-index: 2;
+}
+#social .left-third-house {
+    background: url(../img/left-third-house.svg) left top no-repeat;
+    right: 70%;
+    width: 384px;
+    z-index: 1;
+}
+#social .right-first-house {
+    background: url(../img/right-first-house.svg) right top no-repeat;
+    left: 86%;
+    width: 270px;
+    z-index: 6;
+}
+#social .right-second-house {
+    background: url(../img/right-second-house.svg) right top no-repeat;
+    left: 78%;
+    width: 164px;
+    z-index: 5;
+}
+#social .right-third-house {
+    background: url(../img/right-third-house.svg) right top no-repeat;
+    left: 70%;
+    width: 384px;
+    z-index: 4;
+}
+#social .block-inner {
+    padding-top: 40px;
+    position: relative;
+    z-index: 7;
+}
+.active .block {
+    margin-top: 100px;
+    opacity: 1;
+}
+.block-inner {
+    margin: 200px auto 0;
+    text-align: center;
+    width: 80%;
+}
+.clear {
+    clear: both;
+}
+.block {
+    margin-top: 200px;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+#social .house {
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+.row {
+    min-height: 540px;
+    padding: 10px;
+    position: relative;
+}
+.img-box{
+    margin: 2rem auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+.img-box a{
+    position: relative;
+}
+.img-box a img{
+    width: 20rem;
+}
+.onhover{
+    position: absolute;
+    opacity: 0;
+    top: 0;
+}
+.img-box a:hover .onhover{
+    opacity: 1;
+    transform: opacity 1s;
 }
