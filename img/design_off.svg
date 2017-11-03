@@ -1992,7 +1992,7 @@
 <rect x="298.247" y="378.762" transform="matrix(1 -0.0027 0.0027 1 -1.0174 0.8131)" fill="#F2EDE7" width="8" height="1"/>
 <rect x="310.247" y="378.73" transform="matrix(1 -0.0026 0.0026 1 -0.9711 0.8068)" fill="#F2EDE7" width="8" height="1"/>
 <rect x="322.247" y="378.698" transform="matrix(1 -0.0027 0.0027 1 -1.0172 0.8775)" fill="#F2EDE7" width="8" height="1"/>
-<a xlink:href="https://chrishan2015.github.io/views/practice/index.html" target="_blank">
-    <text x="123" y="365" style="fill:#d3807c;font-size:24pt;font-weight:600;">日 常 练 习</text>
-</a>
+
+<text x="123" y="365" style="fill:#d3807c;font-size:24pt;font-weight:600;">日 常 练 习</text>
+
 </svg>
