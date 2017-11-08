@@ -14,24 +14,65 @@
     </header>
     <nav>
         <ul>
-            <a href=""><li>11111</li></a>
-            <a href=""><li>222222</li></a>
-            <a href=""><li>333333</li></a>
-            <a href=""><li>444444</li></a>
-            <a href=""><li>5555555</li></a>
-            <a href=""><li>666666666</li></a>
+            <a href="javascript:show(0)" id="first"><li>前端基础</li></a>
+            <a href="javascript:show(1)"><li>node和数据库</li></a>
+            <a href="javascript:show(2)"><li>动画</li></a>
         </ul>
     </nav>
     <div class="content">
+        <!-- 前端基础 -->
         <ul>
             <a href=""><li>11111</li></a>
-            <a href=""><li>222222</li></a>
-            <a href=""><li>333333</li></a>
-            <a href=""><li>444444</li></a>
-            <a href=""><li>5555555</li></a>
-            <a href=""><li>666666666</li></a>
+            <a href=""><li>1111111</li></a>
+            <a href=""><li>11111111</li></a>
+            <a href=""><li>11111111</li></a>
+            <a href=""><li>11111111</li></a>
+            <a href=""><li>11111111</li></a>
+        </ul>
+        <!-- node和数据库 -->
+        <ul>
+            <a href=""><li>222222222</li></a>
+            <a href=""><li>22222222</li></a>
+            <a href=""><li>22222</li></a>
+            <a href=""><li>222222222</li></a>
+            <a href=""><li>222222222222222</li></a>
+            <a href=""><li>2222222222</li></a>
+        </ul>
+        <!-- 动画 -->
+        <ul>
+            <a href=""><li>33333333333</li></a>
+            <a href=""><li>33333333</li></a>
+            <a href=""><li>3333333333</li></a>
+            <a href=""><li>3333333333</li></a>
+            <a href=""><li>33333</li></a>
+            <a href=""><li>333333333</li></a>
         </ul>
     </div>
 </div>
+
+<script type="text/javascript">
+    var first = document.getElementById("first");
+    function show(val,isfirst){
+        if(!isfirst){
+            first.classList.remove('select');
+        }
+        var contentAll = document.querySelectorAll('.content ul');
+        contentAll.forEach(function(value,index){
+            if(index == val){
+                value.style.display = 'block';
+            }else{
+                value.style.display = 'none';
+            }
+        })
+        return false
+    }
+
+    function init(){
+        show(0,1);
+        first.classList.add('select');
+    }
+
+    init();
+</script>
 </body>
 </html>
